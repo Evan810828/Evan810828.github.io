@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Generative Adversarial Networks (GAN) - My New Hugo Site</title><meta name="Description" content="Welcome to Yifan&#39;s Homepage"><meta property="og:url" content="http://localhost:1313/posts/gan/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Generative Adversarial Networks (GAN)">
+  <meta property="og:description" content="1. 舍弃对真实数据分布的拟合 传统生成模型通常尝试找到一个分布 (P_\theta)，使其尽可能接近真实数据分布 (P_{\text{data}})。
+GANs 则换了一个视角：它们并不直接拟合概率密度，而是提出一个问题：
+是否可以生成来自 (P_\theta) 的样本，使它们与来自 (P_{\text{data}}) 的样本无法区分？ 定义两个样本集合： (S_a = {x \mid x \sim P_\theta}) —— 模型生成的样本 (S_b = {x \mid x \sim P_{\text{data}}}) —— 真实分布的样本 目标：判断 (S_a) 与 (S_b) 是否来自同一分布。 如果两者不可区分，则说明生成模型学到了足够接近真实分布的能力。
+生成器 (G)：输入噪声 (z)，输出样本，目标是生成“以假乱真”的数据。
+$$ G_{\theta_g}: \mathbb{R}^P \to \mathbb{R}^N $$ 判别器 (D)：输入样本，输出概率，表示该样本来自真实分布还是生成分布。
+$$ D_{\theta_d}: \mathbb{R}^N \to [0,1] $$ 二者形成对抗关系： (G) 的目标：最大化判别器出错的概率； (D) 的目标：正确地区分真实样本和生成样本。 2. GAN 的训练过程等价于最小化数据分布与生成分布之间的 JS 散度 判别器目标：$ D(x) = 1 \quad \text{if } x \sim P_{\text{data}}, \qquad D(G(z)) = 0 \quad \text{if } z \sim P_Z ; (x \sim P_g) $">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-01T00:00:00-05:00">
+    <meta property="article:modified_time" content="2025-10-01T00:00:00-05:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Generative Adversarial Networks (GAN)">
+  <meta name="twitter:description" content="1. 舍弃对真实数据分布的拟合 传统生成模型通常尝试找到一个分布 (P_\theta)，使其尽可能接近真实数据分布 (P_{\text{data}})。
+GANs 则换了一个视角：它们并不直接拟合概率密度，而是提出一个问题：
+是否可以生成来自 (P_\theta) 的样本，使它们与来自 (P_{\text{data}}) 的样本无法区分？ 定义两个样本集合： (S_a = {x \mid x \sim P_\theta}) —— 模型生成的样本 (S_b = {x \mid x \sim P_{\text{data}}}) —— 真实分布的样本 目标：判断 (S_a) 与 (S_b) 是否来自同一分布。 如果两者不可区分，则说明生成模型学到了足够接近真实分布的能力。
+生成器 (G)：输入噪声 (z)，输出样本，目标是生成“以假乱真”的数据。
+$$ G_{\theta_g}: \mathbb{R}^P \to \mathbb{R}^N $$ 判别器 (D)：输入样本，输出概率，表示该样本来自真实分布还是生成分布。
+$$ D_{\theta_d}: \mathbb{R}^N \to [0,1] $$ 二者形成对抗关系： (G) 的目标：最大化判别器出错的概率； (D) 的目标：正确地区分真实样本和生成样本。 2. GAN 的训练过程等价于最小化数据分布与生成分布之间的 JS 散度 判别器目标：$ D(x) = 1 \quad \text{if } x \sim P_{\text{data}}, \qquad D(G(z)) = 0 \quad \text{if } z \sim P_Z ; (x \sim P_g) $">
+<meta name="application-name" content="Yifan&#39;s Homepage">
+<meta name="apple-mobile-web-app-title" content="Yifan&#39;s Homepage">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/gan/" /><link rel="prev" href="http://localhost:1313/posts/kl_generative_eval/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Generative Adversarial Networks (GAN)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/gan\/"
+        },"genre": "posts","wordcount":  455 ,
+        "url": "http:\/\/localhost:1313\/posts\/gan\/","datePublished": "2025-10-01T00:00:00-05:00","dateModified": "2025-10-01T00:00:00-05:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yifan Wu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="My New Hugo Site">Yifan&#39;s Homepage</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="My New Hugo Site">Yifan&#39;s Homepage</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Generative Adversarial Networks (GAN)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Yifan Wu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-10-01">2025-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;455 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-舍弃对真实数据分布的拟合">1. 舍弃对真实数据分布的拟合</a></li>
+    <li><a href="#是否可以生成来自-p_"><strong>是否可以生成来自 (P_\theta) 的样本，使它们与来自 (P_{\text{data}}) 的样本无法区分？</strong></a></li>
+    <li><a href="#2-gan-的训练过程等价于最小化数据分布与生成分布之间的-js-散度">2. GAN 的训练过程等价于最小化数据分布与生成分布之间的 JS 散度</a>
+      <ul>
+        <li><a href="#kl-散度定义">KL 散度定义：</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-gan-中的-mode-collapse">3. GAN 中的 Mode Collapse</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-舍弃对真实数据分布的拟合">1. 舍弃对真实数据分布的拟合</h2>
+<p>传统生成模型通常尝试找到一个分布 (P_\theta)，使其尽可能接近真实数据分布 (P_{\text{data}})。<br>
+GANs 则换了一个视角：它们并不直接拟合概率密度，而是提出一个问题：</p>
+<h2 id="是否可以生成来自-p_"><strong>是否可以生成来自 (P_\theta) 的样本，使它们与来自 (P_{\text{data}}) 的样本无法区分？</strong></h2>
+<ul>
+<li>定义两个样本集合：
+<ul>
+<li>(S_a = {x \mid x \sim P_\theta}) —— 模型生成的样本</li>
+<li>(S_b = {x \mid x \sim P_{\text{data}}}) —— 真实分布的样本</li>
+</ul>
+</li>
+</ul>
+<p>目标：判断 (S_a) 与 (S_b) 是否来自同一分布。 如果两者不可区分，则说明生成模型学到了足够接近真实分布的能力。</p>
+<ul>
+<li><strong>生成器 (G)</strong>：输入噪声 (z)，输出样本，目标是生成“以假乱真”的数据。<br>
+$$
+G_{\theta_g}: \mathbb{R}^P \to \mathbb{R}^N
+$$</li>
+<li><strong>判别器 (D)</strong>：输入样本，输出概率，表示该样本来自真实分布还是生成分布。<br>
+$$
+D_{\theta_d}: \mathbb{R}^N \to [0,1]
+$$
+二者形成对抗关系：
+<ul>
+<li>(G) 的目标：最大化判别器出错的概率；</li>
+<li>(D) 的目标：正确地区分真实样本和生成样本。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-gan-的训练过程等价于最小化数据分布与生成分布之间的-js-散度">2. GAN 的训练过程等价于最小化数据分布与生成分布之间的 JS 散度</h2>
+<p>判别器目标：$
+D(x) = 1 \quad \text{if } x \sim P_{\text{data}}, \qquad
+D(G(z)) = 0 \quad \text{if } z \sim P_Z ; (x \sim P_g)
+$</p>
+<ul>
+<li>
+<p>真实样本的判别准确率：  $\text{Accuracy}_{\text{real}} = D(x)$</p>
+</li>
+<li>
+<p>生成样本的判别准确率：  $\text{Accuracy}_{\text{fake}} = 1 - D(G(z))$</p>
+</li>
+</ul>
+<p><strong>目标函数</strong>：$\min_G \max_D V(D,G)$
+其中
+$$
+V(D,G) = \mathbb{E}<em>{x \sim P</em>{\text{data}}}[\log D(x)] + \mathbb{E}_{z \sim P_Z}[\log (1 - D(G(z)))]
+$$</p>
+<p>当固定生成器G的情况下，D的最优解为 $$D^*<em>G(x) = \frac{p</em>{\text{data}}(x)}{p_{\text{data}}(x) + p_g(x)}$$</p>
+<p>当且仅当生成分布等于真实分布时，即：
+$$
+p_g(x) = p_{\text{data}}(x)
+$$
+生成器 (G) 达到全局最优。</p>
+<p>此时optimal value为$\frac{1}{2}$，也就是说判别器D做出完全随机的猜测。</p>
+<hr>
+<h3 id="kl-散度定义">KL 散度定义：</h3>
+<p>$$
+D_{KL}(p \parallel q) = \int p(x) \log \frac{p(x)}{q(x)} dx
+$$
+在 GAN 中，我们考虑：</p>
+<p>$$
+\mathrm{KL}!\left(p_{\text{data}} \Big| \tfrac{p_{\text{data}} + p_g}{2}\right)
+= \int p_{\text{data}}(x)
+\left(
+\log \frac{p_{\text{data}}(x)}{p_{\text{data}}(x)+p_g(x)} - \log \tfrac{1}{2}
+\right) dx
+$$</p>
+<p>$$
+= \int p_{\text{data}}(x) \Big( \log D_G^<em>(x) - \log D_{G^</em>}^*(x) \Big) dx
+$$</p>
+<p>$$
+\mathrm{KL}!\left(p_g \Big| \tfrac{p_{\text{data}} + p_g}{2}\right)
+= \int p_g(x)
+\left(
+\log \frac{p_g(x)}{p_{\text{data}}(x)+p_g(x)} - \log \tfrac{1}{2}
+\right) dx
+$$</p>
+<p>$$
+= \int p_g(x) \Big( \log (1 - D_G^<em>(x)) - \log (1 - D_{G^</em>}^*(x)) \Big) dx
+$$</p>
+<p>两项 KL 相加等价于 GAN 的目标函数与最优判别器下的值函数之差：</p>
+<p>$$
+\mathrm{KL}!\left(p_{\text{data}} \Big| \tfrac{p_{\text{data}}+p_g}{2}\right) + \mathrm{KL}!\left(p_g \Big| \tfrac{p_{\text{data}}+p_g}{2}\right)
+$$</p>
+<p>$$
+= \int p_{\text{data}}(x)\big(\log D_G^<em>(x) - \log D_{G^</em>}^<em>(x)\big),dx+ \int p_g(x)\big(\log(1-D_G^</em>(x)) - \log(1-D_{G^<em>}^</em>(x))\big),dx
+$$</p>
+<p>$$
+= \mathbb{E}<em>{x\sim p</em>{\text{data}}}[\log D_G^<em>(x)]- \mathbb{E}<em>{x\sim p</em>{\text{data}}}[\log D_{G^</em>}^<em>(x)]+ \mathbb{E}_{x\sim p_g}[\log(1-D_G^</em>(x))]- \mathbb{E}<em>{x\sim p_g}[\log(1-D</em>{G^<em>}^</em>(x))]
+$$</p>
+<p>$$
+= \Big(\mathbb{E}<em>{x\sim p</em>{\text{data}}}[\log D_G^<em>(x)]+ \mathbb{E}_{x\sim p_g}[\log(1-D_G^</em>(x))]\Big)- \Big(\mathbb{E}<em>{x\sim p</em>{\text{data}}}[\log D_{G^<em>}^</em>(x)]+ \mathbb{E}<em>{x\sim p_g}[\log(1-D</em>{G^<em>}^</em>(x))]\Big)
+$$</p>
+<p>$$
+= V(G, D_G^<em>) - V(G^</em>, D_{G^<em>}^</em>)
+$$</p>
+<p><strong>Jensen–Shannon (JS) 散度</strong>定义为：
+$$
+JS(p \parallel q) = \tfrac{1}{2} KL\Big(p \parallel \tfrac{p+q}{2}\Big) + \tfrac{1}{2} KL\Big(q \parallel \tfrac{p+q}{2}\Big)
+$$</p>
+<p>在 GAN 中：
+$$
+\min_G \Big{ V(G, D^<em>_G) - V(G^</em>, D^<em>_{G^</em>}) \Big} = \min_G 2 , JS(p_{\text{data}} \parallel p_g)
+$$</p>
+<p>当 (p_g = p_{\text{data}}) 时，JS 散度为 0，模型达到最优</p>
+<h2 id="3-gan-中的-mode-collapse">3. GAN 中的 Mode Collapse</h2>
+<p>当生成分布 (p_g) 与真实分布 (p_{\text{data}}) <strong>不重叠</strong>时，JSD 达到常数最大值 (\log 2)，梯度消失，生成器无法获得改进的方向，导致训练停滞。 这导致在早期训练阶段（分布差异大时），GAN 很容易出现无法收敛的情况。</p>
+<ol>
+<li>训练一个 GAN（如 DCGAN）分别运行 <strong>1, 10, 25 个 epoch</strong>。</li>
+<li>固定该生成器 (G)。</li>
+<li>从零开始训练判别器 (D)。</li>
+<li>在判别器训练过程中，测量 <strong>原始 GAN 损失下生成器的梯度范数</strong>。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../files/image.png"
+        data-srcset="../files/image.png, ../files/image.png 1.5x, ../files/image.png 2x"
+        data-sizes="auto"
+        alt="../files/image.png"
+        title="alt text" /></p>
+<p><strong>训练 1 epoch 的生成器</strong></p>
+<ul>
+<li>输出样本接近噪声，分布较分散。</li>
+<li>与真实分布存在部分 <strong>模糊重叠</strong>。</li>
+<li>判别器无法完全分离真假样本 → JSD 未饱和 → 生成器仍获得 <strong>非零梯度</strong>。</li>
+</ul>
+<p><strong>训练 10 epoch 的生成器</strong></p>
+<ul>
+<li>学到一些结构特征，比 1 epoch 更接近真实分布。</li>
+<li>生成分布与真实分布依然有 <strong>部分交集</strong>。</li>
+<li>判别器虽逐渐变强，但生成器梯度 <strong>不会完全消失</strong>。</li>
+</ul>
+<p><strong>训练 25 epoch 的生成器</strong></p>
+<ul>
+<li>容易出现 <strong>模式崩溃 (mode collapse)</strong>，生成器陷入某个狭小区域，不再探索整个数据分布，缺乏多样性。</li>
+<li>导致生成分布和真实分布几乎 <strong>不重叠</strong>。</li>
+<li>判别器可轻松分离真假 → JSD 饱和到常数 (\log 2) → 生成器梯度 <strong>彻底消失</strong>。</li>
+</ul>
+<hr>
+<p>从 JSD 的损失函数看，展开为两部分：
+$$
+JSD = \int p_{\text{data}}(x),\log \frac{2p_{\text{data}}(x)}{p_{\text{data}}(x)+p_g(x)},dx + \int p_g(x),\log \frac{2p_g(x)}{p_{\text{data}}(x)+p_g(x)},dx
+$$
+$$
+= \frac{1}{N}\sum_{n=1}^N \log D(x^n) + \frac{1}{M}\sum_{m=1}^M \log \big(1 - D(G(z^m))\big) \quad \text{(remove constants)}
+$$</p>
+<ul>
+<li>
+<p>第一项 <strong>Coverage</strong> term
+如果某区域真实分布 (p_{\text{data}}(x)) 很高，那么生成分布 (p_g(x)) 也应该高。 但这一项并 <strong>不会直接出现在生成器的优化目标中</strong>，因此生成器不会被强制覆盖所有模式。</p>
+</li>
+<li>
+<p>第二项 <strong>Quality</strong> term
+如果某区域生成分布 (p_g(x)) 高，而真实分布 (p_{\text{data}}(x)) 很低，会受到惩罚。 生成器主要优化这一项 → 倾向于集中在少量真实分布峰值上，来最小化惩罚。</p>
+</li>
+</ul>
+<p>其中生成器部分对应 quality term，而 coverage term 并未被直接优化。这导致生成器只需专注于少量模式就能“骗过”判别器，而不是覆盖所有模式。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-10-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="http://localhost:1313/posts/gan/" data-title="Generative Adversarial Networks (GAN)"><i class="fab fa-x-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="http://localhost:1313/posts/gan/" data-title="Generative Adversarial Networks (GAN)"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/gan/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/gan/" data-title="Generative Adversarial Networks (GAN)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/gan/" data-title="Generative Adversarial Networks (GAN)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/gan/" data-title="Generative Adversarial Networks (GAN)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Diaspora" data-sharer="diaspora" data-url="http://localhost:1313/posts/gan/" data-title="Generative Adversarial Networks (GAN)" data-description=""><i class="fab fa-diaspora fa-fw" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fgan%2f&amp;text=Generative%20Adversarial%20Networks%20%28GAN%29" target="_blank" title="Share on Telegram"><i class="fab fa-telegram fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/kl_generative_eval/" class="prev" rel="prev" title="KL-Divergence in Generative Models Evaluation"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>KL-Divergence in Generative Models Evaluation</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.145.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yifan Wu</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
+</html>
