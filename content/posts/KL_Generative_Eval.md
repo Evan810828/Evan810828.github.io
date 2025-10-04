@@ -3,6 +3,7 @@ title = "KL-Divergence in Generative Models Evaluation"
 date = 2025-10-01
 permalink = "/blogs/kl-generative-eval/"
 draft = false
+math = true
 +++
 
 - 数据真实分布：$p(x)$  
@@ -75,15 +76,16 @@ $
 由定义：
 
 $$
-D_{\mathrm{KL}}(P\Vert Q_\theta) = \mathbb{E}_{x\sim p}\big[\log p(x) - \log q_\theta(x)\big]
+D_{\mathrm{KL}}\!\left(P \,\middle\|\, Q\_{\theta}\right) = \mathbb{E}\_{x \sim p}\!\bigl[\log p(x) - \log q_{\theta}(x)\big]
 $$
 
 将与参数无关的 $H(P)=\mathbb{E}_{p}[-\log p(x)]$ 视作常数，则
 
+<!-- \arg\max_{\theta} \mathbb{E}_{x\sim p}\big[\log q_\theta(x)\big] -->
 $$
-\arg\min_{\theta} D_{\mathrm{KL}}(P\Vert Q_\theta)
+\arg\min\_{\theta} D\_{\mathrm{KL}}(P\Vert Q\_\theta)
 \equiv
-\arg\max_{\theta} \mathbb{E}_{x\sim p}\big[\log q_\theta(x)\big]
+\arg\max\_{\theta} \mathbb{E}\_{x\sim p}\big[\log q\_\theta(x)\big]
 $$
 
 以经验分布近似期望（样本 $\{x_i\}_{i=1}^n$ 来自 p）：

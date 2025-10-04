@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pubs on My New Hugo Site</title>
+    <link>http://localhost:1313/pubs/</link>
+    <description>Recent content in Pubs on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>wu0001810@umn.edu (Yifan Wu)</managingEditor>
+    <webMaster>wu0001810@umn.edu (Yifan Wu)</webMaster>
+    <lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/pubs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Weighted Diversified Sampling for Efficient Data-Driven Single-Cell Gene-Gene Interaction Discovery</title>
+      <link>http://localhost:1313/publication/WDS/</link>
+      <pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><author>wu0001810@umn.edu (Yifan Wu)</author>
+      <guid>http://localhost:1313/publication/WDS/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

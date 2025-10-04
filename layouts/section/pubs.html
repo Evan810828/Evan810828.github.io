@@ -1,0 +1,67 @@
+{{- define "title" -}}
+  {{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" }} - {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+  <div class="page pub-list">
+    <h2 class="single-title animate__animated animate__pulse animate__faster">
+      {{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}
+    </h2>
+
+    {{/* Collect all publication pages; single-page list without pagination */}}
+    {{- $pages := .Pages.ByDate.Reverse -}}
+
+    {{- range $p := $pages -}}
+      {{- $ps := $p.Params -}}
+      {{- $img := or $ps.cover $ps.image -}}
+      <article class="pub-item">
+        <div class="pub-left">
+          {{- if $img -}}
+            <div class="pub-thumb">
+              <img src="{{ $img | relURL }}" loading="lazy" />
+            </div>
+          {{- end -}}
+          <div class="pub-venue-wrap">
+            {{- with $ps.venue_short -}}
+              <div class="pub-venue-badge">{{ . }}{{ with $ps.year }}’{{ substr (string .) 2 2 }}{{ end }}</div>
+            {{- else -}}
+              {{- with $ps.venue -}}
+                <div class="pub-venue-badge">{{ . }}{{ with $ps.year }} {{ . }}{{ end }}</div>
+              {{- end -}}
+            {{- end -}}
+          </div>
+        </div>
+
+        <div class="pub-body">
+          <h3 class="pub-title"><a >{{ $p.Title | emojify }}</a></h3>
+
+          {{/* Authors list: supports params.authors (array of strings) or params.authorsDetailed (array of {name, url}) */}}
+          <div class="pub-authors">
+            {{- $authors := $ps.authors -}}
+            {{- $authorsDetailed := $ps.authorsDetailed -}}
+            {{- if $authorsDetailed -}}
+              {{- range $i, $a := $authorsDetailed -}}
+                {{- if gt $i 0 }}, {{ end -}}
+                {{- with $a.url -}}<a href="{{ . }}" target="_blank" rel="noopener">{{ $a.name }}</a>{{- else -}}{{ $a.name }}{{- end -}}
+              {{- end -}}
+            {{- else if $authors -}}
+              {{- range $i, $a := $authors -}}{{- if gt $i 0 }}, {{ end -}}{{ $a }}{{- end -}}
+            {{- end -}}
+          </div>
+
+          {{- with $ps.venue -}}
+            <div class="pub-venue">{{ . }}{{ with $ps.year }}, {{ . }}{{ end }}</div>
+          {{- end -}}
+
+          <div class="pub-links">
+            <!-- <a class="pub-btn" href="{{ $p.RelPermalink }}">ABS</a> -->
+            {{- with $ps.pdf }}<a class="pub-btn" href="{{ . }}" target="_blank" rel="noopener">PDF</a>{{ end -}}
+            {{- $codeURL := or $ps.repo $ps.code_url -}}
+            {{- with $codeURL }}<a class="pub-btn" href="{{ . }}" target="_blank" rel="noopener">CODE</a>{{ end -}}
+            {{- with $ps.bib }}<a class="pub-btn" href="{{ . }}" target="_blank" rel="noopener">BIB</a>{{ end -}}
+          </div>
+        </div>
+      </article>
+    {{- end -}}
+  </div>
+{{- end -}}

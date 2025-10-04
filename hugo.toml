@@ -72,7 +72,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   [[menu.main]]
 
-    weight = 1
+    weight = 2
 
     identifier = "posts"
 
@@ -94,33 +94,17 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   [[menu.main]]
 
-    weight = 2
+    weight = 1
 
-    identifier = "tags"
-
-    pre = ""
-
-    post = ""
-
-    name = "Tags"
-
-    url = "/tags/"
-
-    title = ""
-
-  [[menu.main]]
-
-    weight = 3
-
-    identifier = "categories"
+    identifier = "publications"
 
     pre = ""
 
     post = ""
 
-    name = "Categories"
+    name = "Publications"
 
-    url = "/categories/"
+    url = "/pubs/"
 
     title = ""
 
@@ -148,15 +132,15 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   # website title for Open Graph and Twitter Cards
 
-  title = "My cool site"
+  title = "Yifan's Homepage"
 
   # website description for RSS, SEO, Open Graph and Twitter Cards
 
-  description = "This is my cool site"
+  description = "Welcome to Yifan's Homepage"
 
   # website images for Open Graph and Twitter Cards
 
-  images = ["/logo.png"]
+  images = [""]
 
 
 
@@ -164,9 +148,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   [params.author]
 
-    name = "xxxx"
+    name = "Yifan Wu"
 
-    email = ""
+    email = "wu0001810@umn.edu"
 
     link = ""
 
@@ -194,7 +178,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
       # title name
 
-      name = ""
+      name = "Yifan Wu's Homepage"
 
       # you can add extra information before the name (HTML format is supported), such as icons
 
@@ -376,7 +360,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
       # URL of avatar shown in home page
 
-      avatarURL = "/images/avatar.png"
+      avatarURL = "./avatar.png"
 
       #  title shown in home page (HTML format is supported)
 
@@ -384,7 +368,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
       # subtitle shown in home page (HTML format is supported)
 
-      subtitle = "This is My New Hugo Site"
+      subtitle = "Welcome to Yifan's Homepage"
 
       # whether to use typeit animation for subtitle
 
@@ -406,183 +390,24 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
       # special amount of posts in each home posts page
 
-      paginate = 6
+      paginate = 5
 
       #  replaced with hiddenFromHomePage in params.page
 
       # default behavior when you don't set "hiddenFromHomePage" in front matter
 
-      defaultHiddenFromHomePage = false
-
-
+      defaultHiddenFromHomePage = true
 
   # Social config about the author
 
   [params.social]
 
-    GitHub = "xxxx"
+    GitHub = "Evan810828.github"
 
-    Linkedin = ""
+    Linkedin = "evanwu810828"
 
-    X = "xxxx" # 
+    Email = "wu001810@umn.edu"
 
-    Twitter = "" # 
-
-    Instagram = "xxxx"
-
-    Facebook = "xxxx"
-
-    Telegram = "xxxx"
-
-    Medium = ""
-
-    Gitlab = ""
-
-    Youtubelegacy = ""
-
-    Youtubecustom = ""
-
-    Youtubechannel = ""
-
-    Tumblr = ""
-
-    Quora = ""
-
-    Keybase = ""
-
-    Pinterest = ""
-
-    Reddit = ""
-
-    Codepen = ""
-
-    FreeCodeCamp = ""
-
-    Bitbucket = ""
-
-    Stackoverflow = ""
-
-    Weibo = ""
-
-    Odnoklassniki = ""
-
-    VK = ""
-
-    Flickr = ""
-
-    Xing = ""
-
-    Snapchat = ""
-
-    Soundcloud = ""
-
-    Spotify = ""
-
-    Bandcamp = ""
-
-    Paypal = ""
-
-    Fivehundredpx = ""
-
-    Mix = ""
-
-    Goodreads = ""
-
-    Lastfm = ""
-
-    Foursquare = ""
-
-    Hackernews = ""
-
-    Kickstarter = ""
-
-    Patreon = ""
-
-    Steam = ""
-
-    Twitch = ""
-
-    Strava = ""
-
-    Skype = ""
-
-    Whatsapp = ""
-
-    Zhihu = ""
-
-    Douban = ""
-
-    Angellist = ""
-
-    Slidershare = ""
-
-    Jsfiddle = ""
-
-    Deviantart = ""
-
-    Behance = ""
-
-    Dribbble = ""
-
-    Wordpress = ""
-
-    Vine = ""
-
-    Googlescholar = ""
-
-    Researchgate = ""
-
-    Mastodon = ""
-
-    Thingiverse = ""
-
-    Devto = ""
-
-    Gitea = ""
-
-    XMPP = ""
-
-    Matrix = ""
-
-    Bilibili = ""
-
-    Discord = ""
-
-    DiscordInvite = ""
-
-    Lichess = ""
-
-    ORCID = ""
-
-    Pleroma = ""
-
-    Kaggle = ""
-
-    MediaWiki = ""
-
-    Plume = ""
-
-    HackTheBox = ""
-
-    RootMe = ""
-
-    Malt = "" # 
-
-    TikTok = "" # 
-
-    TryHackMe = "" # 
-
-    Codeberg = "" # 
-
-    HuggingFace = "" # 
-
-    Threads = "" # 
-
-    Phone = ""
-
-    Email = "xxxx@xxxx.com"
-
-    RSS = true # 
 
 
 
@@ -592,7 +417,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
     #  whether to hide a page from home page
 
-    hiddenFromHomePage = false
+    hiddenFromHomePage = true
 
     #  whether to hide a page from search results
 
@@ -716,7 +541,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
     [params.page.share]
 
-      enable = true
+      enable = false
 
       X = true # 
 

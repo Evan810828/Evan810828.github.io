@@ -3,40 +3,42 @@
         <title>All Posts - My New Hugo Site</title>
         <link>http://localhost:1313/posts/</link>
         <description>All Posts | My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 01 Oct 2025 00:00:00 -0500</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wu0001810@umn.edu (Yifan Wu)</managingEditor>
+            <webMaster>wu0001810@umn.edu (Yifan Wu)</webMaster><lastBuildDate>Wed, 01 Oct 2025 00:00:00 -0500</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Generative Adversarial Networks (GAN)</title>
     <link>http://localhost:1313/gan/</link>
     <pubDate>Wed, 01 Oct 2025 00:00:00 -0500</pubDate>
-    <author>xxxx</author>
+    <author>wu0001810@umn.edu (Yifan Wu)</author>
     <guid>http://localhost:1313/gan/</guid>
     <description><![CDATA[<h2 id="1-舍弃对真实数据分布的拟合">1. 舍弃对真实数据分布的拟合</h2>
-<p>传统生成模型通常尝试找到一个分布 (P_\theta)，使其尽可能接近真实数据分布 (P_{\text{data}})。<br>
+<p>传统生成模型通常尝试找到一个分布 $P_\theta$，使其尽可能接近真实数据分布 $P_{\text{data}}$。<br>
 GANs 则换了一个视角：它们并不直接拟合概率密度，而是提出一个问题：</p>
-<h2 id="是否可以生成来自-p_"><strong>是否可以生成来自 (P_\theta) 的样本，使它们与来自 (P_{\text{data}}) 的样本无法区分？</strong></h2>
+<p>**是否可以生成来自 $P_\theta$ 的样本，使它们与来自 $P_{\text{data}}$ 的样本无法区分？**</p>
 <ul>
 <li>定义两个样本集合：
 <ul>
-<li>(S_a = {x \mid x \sim P_\theta}) —— 模型生成的样本</li>
-<li>(S_b = {x \mid x \sim P_{\text{data}}}) —— 真实分布的样本</li>
+<li>$S_a = {x \mid x \sim P_\theta}$ —— 模型生成的样本</li>
+<li>$S_b = {x \mid x \sim P_{\text{data}}}$ —— 真实分布的样本</li>
 </ul>
 </li>
 </ul>
-<p>目标：判断 (S_a) 与 (S_b) 是否来自同一分布。 如果两者不可区分，则说明生成模型学到了足够接近真实分布的能力。</p>
+<p>目标：判断 $S_a$ 与 $S_b$ 是否来自同一分布。 如果两者不可区分，则说明生成模型学到了足够接近真实分布的能力。</p>
 <ul>
-<li><strong>生成器 (G)</strong>：输入噪声 (z)，输出样本，目标是生成“以假乱真”的数据。<br>
-$$
+<li>**生成器 $G$**：输入噪声 $z$，输出样本，目标是生成“以假乱真”的数据。</li>
+</ul>
+<p>$$
 G_{\theta_g}: \mathbb{R}^P \to \mathbb{R}^N
-$$</li>
-<li><strong>判别器 (D)</strong>：输入样本，输出概率，表示该样本来自真实分布还是生成分布。<br>
-$$
-D_{\theta_d}: \mathbb{R}^N \to [0,1]
-$$
-二者形成对抗关系：
+$$</p>
 <ul>
-<li>(G) 的目标：最大化判别器出错的概率；</li>
-<li>(D) 的目标：正确地区分真实样本和生成样本。</li>
+<li>**判别器 $D$**：输入样本，输出概率，表示该样本来自真实分布还是生成分布。</li>
 </ul>
-</li>
+<p>$$
+D_{\theta_d}: \mathbb{R}^N \to [0,1]
+$$</p>
+<p>二者形成对抗关系：</p>
+<ul>
+<li>$G$ 的目标：最大化判别器出错的概率；</li>
+<li>$D$ 的目标：正确地区分真实样本和生成样本。</li>
 </ul>
 <h2 id="2-gan-的训练过程等价于最小化数据分布与生成分布之间的-js-散度">2. GAN 的训练过程等价于最小化数据分布与生成分布之间的 JS 散度</h2>
 <p>判别器目标：$
@@ -48,7 +50,7 @@ $</p>]]></description>
     <title>KL-Divergence in Generative Models Evaluation</title>
     <link>http://localhost:1313/kl_generative_eval/</link>
     <pubDate>Wed, 01 Oct 2025 00:00:00 &#43;0000</pubDate>
-    <author>xxxx</author>
+    <author>wu0001810@umn.edu (Yifan Wu)</author>
     <guid>http://localhost:1313/kl_generative_eval/</guid>
     <description><![CDATA[<ul>
 <li>数据真实分布：$p(x)$</li>
@@ -76,12 +78,12 @@ $$</p>]]></description>
     <title>Variational Auto-Encoder</title>
     <link>http://localhost:1313/vae/</link>
     <pubDate>Wed, 01 Oct 2025 00:00:00 &#43;0000</pubDate>
-    <author>xxxx</author>
+    <author>wu0001810@umn.edu (Yifan Wu)</author>
     <guid>http://localhost:1313/vae/</guid>
     <description><![CDATA[<h2 id="1-dimensionality-reduction-via-encoder-decoder">1. Dimensionality Reduction via Encoder-Decoder</h2>
-<p>$$
-(e^<em>, d^</em>) ;=; \arg\min_{(e,d)\in E\times D}; \epsilon!\big(x,; d(e(x))\big)
-$$</p>
+<p>\begin{align}
+(e^*, d^*) = \arg\min_{(e,d)\in E\times D}; \epsilon!\big(x,; d(e(x))\big)
+\end{align}</p>
 <ul>
 <li>$x \in \mathbb{R}^n$: 原始输入数据</li>
 <li>$e: \mathbb{R}^n \to \mathbb{R}^m$（$m&lt;n$）: 编码器，将 $x$ 映射到潜在空间</li>

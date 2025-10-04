@@ -3,13 +3,14 @@ title = "Variational Auto-Encoder"
 date = 2025-10-01
 permalink = "/blogs/vae/"
 draft = false
+math = true
 +++
 
 ## 1. Dimensionality Reduction via Encoder-Decoder
 
-$$
-(e^*, d^*) \;=\; \arg\min_{(e,d)\in E\times D}\; \epsilon\!\big(x,\; d(e(x))\big)
-$$
+\begin{align}
+(e^*, d^\*) = \arg\min_{(e,d)\in E\times D}\; \epsilon\!\big(x,\; d(e(x))\big)
+\end{align}
 
 - $x \in \mathbb{R}^n$: 原始输入数据  
 - $e: \mathbb{R}^n \to \mathbb{R}^m$（$m<n$）: 编码器，将 $x$ 映射到潜在空间  
@@ -174,7 +175,7 @@ $$
 2. 设定先验 $p_\theta(z) = N(0, I)$
 训练时用 $KL(q_\phi(z \mid x) || p_\theta(z))$ 约束 $ q_\phi$ 与先验接近以获得结构化的潜在空间
 
-3. 从潜在分布采样 z 再经解码器得到生成分布 $$p_\theta(x\midz)$$
+3. 从潜在分布采样 z 再经解码器得到生成分布 $p_\theta(x\mid z)$
 常见设定：$p_\theta(x|z) = N(f_\theta(z), cI)$
 
 4. 重建  $x → z ∼ q_\phi(z \mid x) → x̂ ∼ p_\theta(x \mid z)$ 目标是让 $x̂$ 接近 $x$
