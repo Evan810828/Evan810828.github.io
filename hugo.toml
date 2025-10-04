@@ -1,4 +1,5 @@
-baseURL = "/"
+baseURL = "https://evan810828.github.io/yifanwu.github.io/"
+canonifyURLs = true
 
 
 
