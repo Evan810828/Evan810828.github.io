@@ -1,0 +1,18 @@
+# Hugo build outputs
+public/
+resources/_gen/
+
+# Local dev
+.hugo_build.lock
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node
+node_modules/
+*.log
+
+# VS Code
+.vscode/
