@@ -14,11 +14,15 @@
     {{- range $p := $pages -}}
       {{- $ps := $p.Params -}}
       {{- $img := or $ps.cover $ps.image -}}
+      {{- if $img -}}
+        {{- /* Strip any leading slash so Hugo can prefix with baseURL path for project pages */ -}}
+        {{- $img = replaceRE "^/" "" $img -}}
+      {{- end -}}
       <article class="pub-item">
         <div class="pub-left">
           {{- if $img -}}
             <div class="pub-thumb">
-              <img src="{{ $img | relURL }}" loading="lazy" />
+              <img src="{{ $img | absURL }}" loading="lazy" />
             </div>
           {{- end -}}
           <div class="pub-venue-wrap">
