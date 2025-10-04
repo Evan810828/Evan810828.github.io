@@ -165,23 +165,23 @@ $$
 
 ### Workflow Summary
 
-![alt text](../files/image-1.png)
+![alt text](/vae.png)
 
    
 1. 数据集 D 提供样本 x
 通过推断网络 $q_\phi(z \mid x)$ 将 x 映射为潜在分布而非单点
 常用参数化：$q_\phi(z \mid x) = N(μ(x), diag(σ^2(x)))$
 
-2. 设定先验 $p_\theta(z) = N(0, I)$
+1. 设定先验 $p_\theta(z) = N(0, I)$
 训练时用 $KL(q_\phi(z \mid x) || p_\theta(z))$ 约束 $ q_\phi$ 与先验接近以获得结构化的潜在空间
 
-3. 从潜在分布采样 z 再经解码器得到生成分布 $p_\theta(x\mid z)$
+1. 从潜在分布采样 z 再经解码器得到生成分布 $p_\theta(x\mid z)$
 常见设定：$p_\theta(x|z) = N(f_\theta(z), cI)$
 
-4. 重建  $x → z ∼ q_\phi(z \mid x) → x̂ ∼ p_\theta(x \mid z)$ 目标是让 $x̂$ 接近 $x$
+1. 重建  $x → z ∼ q_\phi(z \mid x) → x̂ ∼ p_\theta(x \mid z)$ 目标是让 $x̂$ 接近 $x$
 生成  $z ∼ p_\theta(z) → x̃ ∼ p_\theta(x \mid z)$ 无需给定 $x$
 
-5. 训练目标：最大化 ELBO 等价于最小化以下损失
+1. 训练目标：最大化 ELBO 等价于最小化以下损失
 $L(x) = 𝐄_{q_\phi(z \mid x)}[−log p_\theta(x|z)] + KL(q_\phi(z \mid x) || p_\theta(z))$
 
 ---
