@@ -11,7 +11,7 @@ theme = "LoveIt"
 
 # website title
 
-title = "My New Hugo Site"
+title = "Yifan Wu's Homepage"
 
 
 
@@ -273,7 +273,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
     # optional site title override for the app when added to an iOS home screen or Android launcher
 
-    title = "My cool site"
+    title = "Yifan Wu's Homepage"
 
     # whether to omit favicon resource links
 
