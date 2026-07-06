@@ -1,0 +1,264 @@
+[
+  {
+    "id": "agent-reliability-2026",
+    "title": "Towards a Science of AI Agent Reliability",
+    "authors": [
+      "Stephan Rabanser",
+      "Sayash Kapoor",
+      "Peter Kirgis",
+      "Kangheng Liu",
+      "Saiteja Utpala",
+      "Arvind Narayanan"
+    ],
+    "year": 2026,
+    "venue": "ICML",
+    "url": "https://arxiv.org/abs/2602.16666",
+    "arxivId": 2602.16666,
+    "tags": [
+      "reliability",
+      "evaluation",
+      "failure analysis"
+    ],
+    "abstract": "Proposes metrics for consistency, robustness, predictability, and safety to evaluate how AI agents behave, degrade, and fail beyond a single aggregate success score.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "agentbench-2024",
+    "title": "AgentBench: Evaluating LLMs as Agents",
+    "authors": [
+      "Xiao Liu",
+      "Hao Yu",
+      "Hanchen Zhang",
+      "Yifan Xu",
+      "Xuanyu Lei",
+      "Hanyu Lai",
+      "Yu Gu",
+      "Hangliang Ding",
+      "Kaiwen Men",
+      "Kejuan Yang",
+      "Shudan Zhang",
+      "Xiang Deng",
+      "Aohan Zeng",
+      "Zhengxiao Du",
+      "Chenhui Zhang",
+      "Sheng Shen",
+      "Tianjun Zhang",
+      "Yu Su",
+      "Huan Sun",
+      "Minlie Huang",
+      "Yuxiao Dong",
+      "Jie Tang"
+    ],
+    "year": 2024,
+    "venue": "ICLR",
+    "url": "https://arxiv.org/abs/2308.03688",
+    "arxivId": 2308.03688,
+    "tags": [
+      "evaluation",
+      "failure analysis",
+      "benchmark"
+    ],
+    "abstract": "Evaluates LLM agents across multiple interactive environments and identifies common failure modes such as weak long-term reasoning, decision making, and instruction following.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "agentprm-2025",
+    "title": "Process Reward Models for LLM Agents: Practical Framework and Directions",
+    "authors": [
+      "Sanjiban Choudhury"
+    ],
+    "year": 2025,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2502.10325",
+    "arxivId": 2502.10325,
+    "tags": [
+      "process reward model",
+      "agent training",
+      "verification"
+    ],
+    "abstract": "Introduces AgentPRM and InversePRM for training LLM agents with process-level reward signals from rollouts or demonstrations, including analysis of reward shaping and reward hacking.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "computer-use-verifiers-2026",
+    "title": "The Art of Building Verifiers for Computer Use Agents",
+    "authors": [
+      "Corby Rosset",
+      "Pratyusha Sharma",
+      "Andrew Zhao",
+      "Miguel Gonzalez-Fernandez",
+      "Ahmed Awadallah"
+    ],
+    "year": 2026,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2604.06240",
+    "arxivId": 2604.0624,
+    "tags": [
+      "verification",
+      "verifier",
+      "agent trajectory"
+    ],
+    "abstract": "Presents design lessons for computer-use-agent verifiers, including rubric construction, process and outcome rewards, failure categorization, and trajectory context management.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "react-2023",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "authors": [
+      "Shunyu Yao",
+      "Jeffrey Zhao",
+      "Dian Yu",
+      "Nan Du",
+      "Izhak Shafran",
+      "Karthik Narasimhan",
+      "Yuan Cao"
+    ],
+    "year": 2023,
+    "venue": "ICLR",
+    "url": "https://arxiv.org/abs/2210.03629",
+    "arxivId": 2210.03629,
+    "tags": [
+      "tool use",
+      "agent trajectory",
+      "verification"
+    ],
+    "abstract": "Interleaves reasoning traces and actions for language-model agents, yielding interpretable trajectories that are useful for tool-use evaluation and verification.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "reflexion-2023",
+    "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+    "authors": [
+      "Noah Shinn",
+      "Federico Cassano",
+      "Edward Berman",
+      "Ashwin Gopinath",
+      "Karthik Narasimhan",
+      "Shunyu Yao"
+    ],
+    "year": 2023,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2303.11366",
+    "arxivId": 2303.11366,
+    "tags": [
+      "feedback",
+      "failure recovery",
+      "agent trajectory"
+    ],
+    "abstract": "Uses verbal feedback and episodic memory to let agents reflect on task failures and improve subsequent attempts without model-weight updates.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "silent-failure-2026",
+    "title": "Silent Failure in LLM Agent Systems: The Entropy Principle and the Inevitable Disorder of Autonomous Agents",
+    "authors": [
+      "Dexing Liu"
+    ],
+    "year": 2026,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2606.08162",
+    "arxivId": 2606.08162,
+    "tags": [
+      "failure detection",
+      "monitoring",
+      "reliability"
+    ],
+    "abstract": "Studies silent failures in LLM agent systems and frames reliability loss as an operational phenomenon requiring monitoring and deterministic governance.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "tau-bench-2024",
+    "title": "tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+    "authors": [
+      "Shunyu Yao",
+      "Noah Shinn",
+      "Pedram Razavi",
+      "Karthik Narasimhan"
+    ],
+    "year": 2024,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2406.12045",
+    "arxivId": 2406.12045,
+    "tags": [
+      "tool agent",
+      "reliability",
+      "evaluation"
+    ],
+    "abstract": "Benchmarks tool-using agents in simulated user interactions with domain APIs and policy rules, introducing pass^k to measure reliability across repeated trials.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "toolformer-2023",
+    "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+    "authors": [
+      "Timo Schick",
+      "Jane Dwivedi-Yu",
+      "Roberto Dessi",
+      "Roberta Raileanu",
+      "Maria Lomeli",
+      "Luke Zettlemoyer",
+      "Nicola Cancedda",
+      "Thomas Scialom"
+    ],
+    "year": 2023,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2302.04761",
+    "arxivId": 2302.04761,
+    "tags": [
+      "tool use",
+      "tool agent",
+      "self-supervision"
+    ],
+    "abstract": "Trains language models to decide when and how to call external APIs, forming an important foundation for later tool-agent reliability and verification work.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  },
+  {
+    "id": "webarena-2023",
+    "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+    "authors": [
+      "Shuyan Zhou",
+      "Frank F. Xu",
+      "Hao Zhu",
+      "Xuhui Zhou",
+      "Robert Lo",
+      "Abishek Sridhar",
+      "Xianyi Cheng",
+      "Tianyue Ou",
+      "Yonatan Bisk",
+      "Daniel Fried",
+      "Uri Alon",
+      "Graham Neubig"
+    ],
+    "year": 2023,
+    "venue": "arXiv",
+    "url": "https://arxiv.org/abs/2307.13854",
+    "arxivId": 2307.13854,
+    "tags": [
+      "tool agent",
+      "evaluation",
+      "web agent"
+    ],
+    "abstract": "Provides a realistic web environment and long-horizon tasks for measuring autonomous agent task completion and robustness in functional websites.",
+    "source": "manual",
+    "addedAt": "2026-07-05",
+    "citationCount": 0
+  }
+]
